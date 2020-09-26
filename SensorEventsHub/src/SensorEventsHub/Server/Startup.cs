@@ -36,7 +36,6 @@ namespace SensorEventsHub.Server
             services.AddScoped<ISensorRepository, SensorRepository>();
             services.AddScoped<ISensorService, SensorService>();
 
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
