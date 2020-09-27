@@ -34,6 +34,10 @@ namespace SensorEventsHub.Domain.Services
         {
             await _sensorRepository.Remover(id);
         }
+        public virtual async Task BuscarPorId(Guid id)
+        {
+            await _sensorRepository.ObterPorId(id);
+        }
         public virtual Task<IEnumerable<Sensor>> BuscarPorQualquerParametro(Expression<Func<Sensor, bool>> predicado)
         {
             return null;
@@ -44,5 +48,6 @@ namespace SensorEventsHub.Domain.Services
             _sensorRepository?.Dispose();
         }
 
+     
     }
 }

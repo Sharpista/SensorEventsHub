@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SensorEventsHub.Domain.Enitidades
 {
+    [Serializable]
     public class Sensor: Entity
     {
         public string Timestamp  { get; private set; }

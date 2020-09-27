@@ -1,6 +1,7 @@
 ﻿{
   "ConnectionStrings": {
-    "SensorEventsHubDB": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SensorEventsHub;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False",
+    "SensorEventsHubDB": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SensorHub;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False",
+    "SensorEventsHubAPIContext": "Server=(localdb)\\mssqllocaldb;Database=SensorEventsHubAPIContext-8f64cf63-5a75-4eb7-95a5-3a952c74b77b;Trusted_Connection=True;MultipleActiveResultSets=true"
   }
 
 }
