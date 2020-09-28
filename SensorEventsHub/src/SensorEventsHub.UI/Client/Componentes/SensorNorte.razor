@@ -1,0 +1,53 @@
+﻿@inject HttpClient Http;
+@using SensorEventsHub.UI.Client.Models
+
+@if(eventoNorte == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{<div class="container-fluid">
+     <table class="table table-dark">
+         <thead>
+             <tr>
+                 <th scope="col">Sensor</th>
+                 <th scope="col">Quantidade</th>
+             </tr>
+         </thead>
+         <tbody>
+             <tr>
+                 <td>brasil.sensor.norte</td>
+                 <td>@ValorNorte()</td>
+             </tr>
+
+         </tbody>
+     </table>
+  </div>
+    
+}
+
+@code {
+    private Evento [] eventoNorte;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    protected async Task LoadData()
+    {
+        eventoNorte = await Http.GetJsonAsync<Evento []>("http://localhost:55897/api/sensores/norte");
+    }
+    private int ValorNorte()
+    {
+        var count = 0;
+
+        foreach(var item in eventoNorte)
+        {
+            count += int.Parse(item.Valor);
+        }
+
+        return count;
+    }
+}

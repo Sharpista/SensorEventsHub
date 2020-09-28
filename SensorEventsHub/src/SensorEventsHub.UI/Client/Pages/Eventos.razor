@@ -1,10 +1,10 @@
-@page "/fetchdata"
+@page "/Eventos"
 @using SensorEventsHub.UI.Client.Models
 @inject HttpClient Http
 
-<h1>Weather forecast</h1>
+<h1>Eventos</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p>Eventos Recebidos</p>
 
 @if (eventos == null)
 {
@@ -12,6 +12,7 @@
 }
 else
 {
+<div class="container-fluid">
     <table class="table">
         <thead>
             <tr>
@@ -22,7 +23,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var evento in eventos)
+            @foreach(var evento in eventos)
             {
                 <tr>
                     <td>@evento.Timestamp</td>
@@ -33,6 +34,8 @@ else
             }
         </tbody>
     </table>
+</div>
+    
 }
 
 @code {
@@ -52,7 +55,7 @@ else
     {
         string processado = "";
 
-        if(string.IsNullOrEmpty(valor))
+        if(valor == null || valor == "")
         {
             processado = "Não processado.";
         }
