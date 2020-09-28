@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SensorEventsHub.Infrastruct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorEventsHub.API", "src\SensorEventsHub.API\SensorEventsHub.API.csproj", "{C73BE532-E7DE-48A6-A938-48FE1F3FEE93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorEventsHub.UI.Client", "src\SensorEventsHub.UI\Client\SensorEventsHub.UI.Client.csproj", "{F4E3809D-EE60-4F1A-9ABB-BDAE7703AFDD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C73BE532-E7DE-48A6-A938-48FE1F3FEE93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C73BE532-E7DE-48A6-A938-48FE1F3FEE93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C73BE532-E7DE-48A6-A938-48FE1F3FEE93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4E3809D-EE60-4F1A-9ABB-BDAE7703AFDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4E3809D-EE60-4F1A-9ABB-BDAE7703AFDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4E3809D-EE60-4F1A-9ABB-BDAE7703AFDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4E3809D-EE60-4F1A-9ABB-BDAE7703AFDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

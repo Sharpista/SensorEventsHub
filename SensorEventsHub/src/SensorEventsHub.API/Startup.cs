@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
@@ -32,10 +33,21 @@ namespace SensorEventsHub.API
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup));
             services.ResolverDependencias();
-
+             
             services.AddDbContext<SensorContext>(option => option
             .UseSqlServer(Configuration.GetConnectionString("SensorEventsHubDB")));
 
+            services.AddSignalR();
+         
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    );
+            });
 
         }
 
@@ -46,6 +58,7 @@ namespace SensorEventsHub.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
 

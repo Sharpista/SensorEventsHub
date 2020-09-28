@@ -89,6 +89,37 @@ namespace SensorEventsHub.API.Controllers
             return _mapper.Map<SensorDTO>(await _sensorService.BuscarPorId(id));
         }
 
+        [HttpGet]
+        [Route("nordeste")]
+        public async Task<IEnumerable<SensorDTO>> ObterTodosPorRegiaoNordeste()
+        {
+            var sensor = _mapper.Map<IEnumerable<SensorDTO>>(await _sensorRepository.BuscarPorQualquerParametro( x=> x.Valor != null && x.Tag.Contains("nordeste")));
+            return sensor;
+        }
+
+        [HttpGet]
+        [Route("norte")]
+        public async Task<IEnumerable<SensorDTO>> ObterTodosPorRegiaoNorte()
+        {
+            var sensor = _mapper.Map<IEnumerable<SensorDTO>>(await _sensorRepository.BuscarPorQualquerParametro(x => x.Valor != null && x.Tag.Contains("norte")));
+            return sensor;
+        }
+
+        [HttpGet]
+        [Route("sudeste")]
+        public async Task<IEnumerable<SensorDTO>> ObterTodosPorRegiaoSudeste()
+        {
+            var sensor = _mapper.Map<IEnumerable<SensorDTO>>(await _sensorRepository.BuscarPorQualquerParametro(x => x.Valor != null && x.Tag.Contains("sudeste")));
+            return sensor;
+        }
+
+        [HttpGet]
+        [Route("sul")]
+        public async Task<IEnumerable<SensorDTO>> ObterTodosPorRegiaoSul()
+        {
+            var sensor = _mapper.Map<IEnumerable<SensorDTO>>(await _sensorRepository.BuscarPorQualquerParametro(x => x.Valor != null && x.Tag.Contains("sul")));
+            return sensor;
+        }
 
 
     }
