@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorEventsHub.Domain", "src\SensorEventsHub.Domain\SensorEventsHub.Domain.csproj", "{EE35B418-3007-47F4-85F7-BFB9D971C1FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SensorEventsHub.Domain", "src\SensorEventsHub.Domain\SensorEventsHub.Domain.csproj", "{EE35B418-3007-47F4-85F7-BFB9D971C1FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorEventsHub.Infrastructure", "src\SensorEventsHub.Infrastructure\SensorEventsHub.Infrastructure.csproj", "{EC639723-225A-42F3-AA8C-ED0E03EB9768}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SensorEventsHub.Infrastructure", "src\SensorEventsHub.Infrastructure\SensorEventsHub.Infrastructure.csproj", "{EC639723-225A-42F3-AA8C-ED0E03EB9768}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorEventsHub.API", "src\SensorEventsHub\Server\SensorEventsHub.API.csproj", "{40FBF762-E31A-4593-982C-BD018CC16D2D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorEventsHub.Client", "src\SensorEventsHub\Client\SensorEventsHub.Client.csproj", "{2AEDAA06-E756-44EE-87B9-9F3D0FDEDF92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorEventsHub.API", "src\SensorEventsHub.API\SensorEventsHub.API.csproj", "{C73BE532-E7DE-48A6-A938-48FE1F3FEE93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +23,10 @@ Global
 		{EC639723-225A-42F3-AA8C-ED0E03EB9768}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC639723-225A-42F3-AA8C-ED0E03EB9768}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC639723-225A-42F3-AA8C-ED0E03EB9768}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40FBF762-E31A-4593-982C-BD018CC16D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40FBF762-E31A-4593-982C-BD018CC16D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40FBF762-E31A-4593-982C-BD018CC16D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40FBF762-E31A-4593-982C-BD018CC16D2D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2AEDAA06-E756-44EE-87B9-9F3D0FDEDF92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2AEDAA06-E756-44EE-87B9-9F3D0FDEDF92}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2AEDAA06-E756-44EE-87B9-9F3D0FDEDF92}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2AEDAA06-E756-44EE-87B9-9F3D0FDEDF92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C73BE532-E7DE-48A6-A938-48FE1F3FEE93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C73BE532-E7DE-48A6-A938-48FE1F3FEE93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C73BE532-E7DE-48A6-A938-48FE1F3FEE93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C73BE532-E7DE-48A6-A938-48FE1F3FEE93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

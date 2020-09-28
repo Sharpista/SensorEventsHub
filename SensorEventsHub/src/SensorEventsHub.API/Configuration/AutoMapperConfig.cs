@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using SensorEventsHub.API.Model;
+using SensorEventsHub.API.ViewModel;
 using SensorEventsHub.Domain.Enitidades;
+
 
 namespace SensorEventsHub.API.Configuration
 {
@@ -10,5 +11,6 @@ namespace SensorEventsHub.API.Configuration
         {
             CreateMap<Sensor, SensorDTO>().ReverseMap();
         }
+
     }
 }

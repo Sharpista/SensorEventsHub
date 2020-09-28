@@ -21,5 +21,6 @@ namespace SensorEventsHub.API.Configuration
 
             return services;
         }
+
     }
 }

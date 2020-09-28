@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using SensorEventsHub.API.Model;
+using SensorEventsHub.API.ViewModel;
 using SensorEventsHub.Domain.Enitidades;
 using SensorEventsHub.Domain.Interfaces.Repositorios;
 using System;
@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace SensorEventsHub.API.Controllers
 {
+
     [Route("api/sensores")]
     [ApiController]
     public class SensorController : ControllerBase
@@ -48,7 +49,7 @@ namespace SensorEventsHub.API.Controllers
             return sensor;
         }
         [HttpPost]
-        public async Task<ActionResult<SensorDTO>>Adicionar(SensorDTO sensorDTO)
+        public async Task<ActionResult<SensorDTO>> Adicionar(SensorDTO sensorDTO)
         {
             if(!ModelState.IsValid) return BadRequest();
 
@@ -75,7 +76,7 @@ namespace SensorEventsHub.API.Controllers
         [HttpDelete("{id:guid}")]
         public async Task<ActionResult<SensorDTO>> Excluir(Guid id)
         {
-            var sensor =  _mapper.Map<Sensor>( await _sensorService.BuscarPorId(id));
+            var sensor = _mapper.Map<Sensor>(await _sensorService.BuscarPorId(id));
 
             if(sensor == null) return NotFound();
 
@@ -83,12 +84,14 @@ namespace SensorEventsHub.API.Controllers
 
             return Ok(sensor);
         }
-        public async Task<SensorDTO>ObterSensorPoId(Guid id)
+        public async Task<SensorDTO> ObterSensorPoId(Guid id)
         {
-            return  _mapper.Map<SensorDTO>( await _sensorService.BuscarPorId(id));
+            return _mapper.Map<SensorDTO>(await _sensorService.BuscarPorId(id));
         }
 
 
 
     }
+
 }
+
