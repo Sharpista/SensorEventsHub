@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SensorEventsHub.API.Model;
+using SensorEventsHub.Domain.Enitidades;
 using SensorEventsHub.Domain.Interfaces.Repositorios;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SensorEventsHub.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/sensores")]
     [ApiController]
     public class SensorController : ControllerBase
     {
@@ -19,7 +18,7 @@ namespace SensorEventsHub.API.Controllers
         private readonly IMapper _mapper;
 
         public SensorController(ISensorRepository sensorRepository,
-                                ISensorService sensorService,  
+                                ISensorService sensorService,
                                 IMapper mapper)
         {
             _sensorRepository = sensorRepository;
@@ -27,92 +26,69 @@ namespace SensorEventsHub.API.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/Sensor
+
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SensorDTO>>> GetSensor()
+        public async Task<IEnumerable<SensorDTO>> ObterTodos()
         {
             var sensor = _mapper.Map<IEnumerable<SensorDTO>>(await _sensorService.ObterTodos());
+            return sensor;
+        }
+
+
+        [HttpGet("{id:guid}")]
+        public async Task<ActionResult<SensorDTO>> ObterPorId(Guid id)
+        {
+            var sensor = await ObterSensorPoId(id);
+
+            if(sensor == null)
+            {
+                return NotFound();
+            }
+
+            return sensor;
+        }
+        [HttpPost]
+        public async Task<ActionResult<SensorDTO>>Adicionar(SensorDTO sensorDTO)
+        {
+            if(!ModelState.IsValid) return BadRequest();
+
+            var sensor = _mapper.Map<Sensor>(sensorDTO);
+
+            await _sensorService.Adicionar(sensor);
 
             return Ok(sensor);
         }
 
-        // GET: api/Sensor/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<SensorDTO>> GetSensorDTO(Guid id)
+        [HttpPut("{id:guid}")]
+        public async Task<ActionResult<SensorDTO>> Atualizar(Guid id, SensorDTO sensorDTO)
         {
-            //var sensorDTO =  _mapper.Map<SensorDTO>(await _sensorService.BuscarPorId(id));
+            if(id != sensorDTO.Id) return BadRequest();
 
-            if (sensorDTO == null)
-            {
-                return NotFound();
-            }
+            if(!ModelState.IsValid) return BadRequest();
 
-            return sensorDTO;
+            var sensor = _mapper.Map<Sensor>(sensorDTO);
+
+            await _sensorService.Atualizar(sensor);
+
+            return Ok(sensor);
+        }
+        [HttpDelete("{id:guid}")]
+        public async Task<ActionResult<SensorDTO>> Excluir(Guid id)
+        {
+            var sensor =  _mapper.Map<Sensor>( await _sensorService.BuscarPorId(id));
+
+            if(sensor == null) return NotFound();
+
+            await _sensorService.Remover(id);
+
+            return Ok(sensor);
+        }
+        public async Task<SensorDTO>ObterSensorPoId(Guid id)
+        {
+            return  _mapper.Map<SensorDTO>( await _sensorService.BuscarPorId(id));
         }
 
-        // PUT: api/Sensor/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutSensorDTO(Guid id, SensorDTO sensorDTO)
-        {
-            if (id != sensorDTO.Id)
-            {
-                return BadRequest();
-            }
 
-            _context.Entry(sensorDTO).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!SensorDTOExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Sensor
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<SensorDTO>> PostSensorDTO(SensorDTO sensorDTO)
-        {
-            _context.SensorDTO.Add(sensorDTO);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetSensorDTO", new { id = sensorDTO.Id }, sensorDTO);
-        }
-
-        // DELETE: api/Sensor/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<SensorDTO>> DeleteSensorDTO(Guid id)
-        {
-            var sensorDTO = await _context.SensorDTO.FindAsync(id);
-            if (sensorDTO == null)
-            {
-                return NotFound();
-            }
-
-            _context.SensorDTO.Remove(sensorDTO);
-            await _context.SaveChangesAsync();
-
-            return sensorDTO;
-        }
-
-        private bool SensorDTOExists(Guid id)
-        {
-            return _context.SensorDTO.Any(e => e.Id == id);
-        }
     }
 }

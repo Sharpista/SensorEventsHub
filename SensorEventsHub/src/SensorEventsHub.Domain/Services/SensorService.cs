@@ -2,7 +2,9 @@
 using SensorEventsHub.Domain.Interfaces.Repositorios;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SensorEventsHub.Domain.Services
@@ -22,25 +24,22 @@ namespace SensorEventsHub.Domain.Services
 
         public virtual async Task Atualizar(Sensor sensor)
         {
-            await _sensorRepository.Atualizar(sensor);
+             await _sensorRepository.Atualizar(sensor);
         }
 
         public virtual async Task<IEnumerable<Sensor>> ObterTodos()
         {
             return await _sensorRepository.ObterTodos();
         }
-
-        public virtual async Task Remover(Guid id)
+        public virtual async Task<Sensor> BuscarPorId(Guid id)
         {
-            await _sensorRepository.Remover(id);
-        }
-        public virtual async Task BuscarPorId(Guid id)
-        {
-            await _sensorRepository.ObterPorId(id);
+           return await _sensorRepository.ObterPorId(id);
         }
         public virtual Task<IEnumerable<Sensor>> BuscarPorQualquerParametro(Expression<Func<Sensor, bool>> predicado)
         {
             return null;
+            //var pattern = "^[0 - 9] +$";
+            //return  _sensorRepository.BuscarPorQualquerParametro(x => x.Valor).Result.Any();
         }
 
         public void Dispose()
@@ -48,6 +47,11 @@ namespace SensorEventsHub.Domain.Services
             _sensorRepository?.Dispose();
         }
 
-     
+        public async Task Remover(Guid id)
+        {
+            await _sensorRepository.Remover(id);
+        }
+
+    
     }
 }

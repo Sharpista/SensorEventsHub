@@ -10,8 +10,8 @@ namespace SensorEventsHub.API.Model
     {
         [Key]
         public Guid Id { get; set; }
-        public string Timestamp { get; private set; }
-        public string Tag { get; private set; }
-        public string Valor { get; private set; }
+        public string Timestamp { get;  set; }
+        public string Tag { get;  set; }
+        public string Valor { get;  set; }
     }
 }

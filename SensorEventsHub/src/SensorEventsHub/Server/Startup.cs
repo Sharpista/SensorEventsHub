@@ -5,10 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SensorEventsHub.Domain.Interfaces.Repositorios;
+using SensorEventsHub.API.Configuration;
 using SensorEventsHub.Infrastructure.Context;
-using SensorEventsHub.Infrastructure.Repositorios;
-using SensorEventsHub.API.Data;
 
 namespace SensorEventsHub.Server
 {
@@ -16,9 +14,7 @@ namespace SensorEventsHub.Server
     {
         public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder();
-            builder.AddJsonFile("config.json", optional: false, reloadOnChange: true);
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -28,21 +24,13 @@ namespace SensorEventsHub.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.ResolverDependencias();
 
-            services.AddScoped<SensorContext>();
-            services.AddScoped<ISensorRepository, SensorRepository>();
-          //  services.AddScoped<ISensorService, SensorService>();
-
-            var connectionString = Configuration.GetConnectionString("SensorEventsHubDB");
-            
             services.AddDbContext<SensorContext>(option => option
                 .UseLazyLoadingProxies()
-                .UseSqlServer(connectionString));
+                .UseSqlServer(Configuration.GetConnectionString("SensorEventsHubDB")));
 
             services.AddAutoMapper(typeof(Startup));
-
-            services.AddDbContext<SensorEventsHubAPIContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SensorEventsHubAPIContext")));
 
 
         }
@@ -58,7 +46,6 @@ namespace SensorEventsHub.Server
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
