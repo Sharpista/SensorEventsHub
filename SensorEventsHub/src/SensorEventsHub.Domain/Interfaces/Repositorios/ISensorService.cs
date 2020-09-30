@@ -13,6 +13,9 @@ namespace SensorEventsHub.Domain.Interfaces.Repositorios
         Task Remover(Guid id);
         Task<Sensor> BuscarPorId(Guid id);
         Task<IEnumerable<Sensor>> ObterTodos();
-        Task<IEnumerable<Sensor>> BuscarPorQualquerParametro(Expression<Func<Sensor, bool>> predicado);
+        Task<IEnumerable<Sensor>> BuscarSensoresNordeste();
+        Task<IEnumerable<Sensor>> BuscarSensoresSul();
+        Task<IEnumerable<Sensor>> BuscarSensoresNorte();
+        Task<IEnumerable<Sensor>> BuscarSensoresSudeste();
     }
 }

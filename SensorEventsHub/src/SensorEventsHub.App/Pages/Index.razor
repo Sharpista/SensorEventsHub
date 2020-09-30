@@ -1,0 +1,69 @@
+﻿@page "/"
+@using SensorEventsHub.App.Shared
+@inject HttpClient Http
+@using Microsoft.AspNetCore.SignalR.Client
+
+<h1>Eventos</h1>
+
+<p>Eventos Recebidos</p>
+
+@if(eventos == null)
+{
+<p><em>Loading...</em></p> }
+else
+{
+<div class="container-fluid">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Tag</th>
+                <th>Valor</th>
+                <th>Processado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var evento in eventos)
+            {
+            <tr>
+                <td>@evento.Timestamp</td>
+                <td>@evento.Tag</td>
+                <td>@evento.Valor</td>
+                <td>@FoiProcessado(evento.Valor)</td>
+            </tr>        
+            }
+        </tbody>
+    </table>
+</div>
+}
+
+@code { private Evento [] eventos;
+
+            protected override async Task OnInitializedAsync()
+            {
+                await LoadData();
+            }
+
+            protected async Task LoadData()
+            {
+                eventos = await Http.GetJsonAsync<Evento []>("http://localhost:50620/api/sensores");
+                StateHasChanged();
+            }
+
+            private string FoiProcessado(string valor)
+            {
+                string processado = "";
+
+                if(string.IsNullOrEmpty(valor))
+                {
+                    processado = "";
+                }
+                else
+                {
+                    processado = "Processado";
+                }
+
+                return processado;
+
+            } 
+    }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SensorEventsHub.Domain.Enitidades;
+using System;
 
 namespace SensorEventsHub.Infrastructure.Mapping
 {
@@ -9,17 +10,16 @@ namespace SensorEventsHub.Infrastructure.Mapping
         public void Configure(EntityTypeBuilder<Sensor> builder)
         {
             builder
-                .HasKey(x => x.Id);
+                .HasKey( x => x.Id);
 
             builder
-                .Property(x => x.Tag)
-                .IsRequired();
+                .Property(x => x.Tag).HasMaxLength(100).IsRequired();
 
             builder
-                .Property(x => x.Timestamp)
-                .IsRequired();
+                .Property(x => x.Timestamp).HasMaxLength(100).IsRequired();
+               
 
-            builder.Property(x => x.Valor);
+            builder.Property(x => x.Valor).IsRequired();
 
 
         }

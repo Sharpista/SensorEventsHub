@@ -1,8 +1,10 @@
-﻿using SensorEventsHub.Domain.Enitidades;
+﻿using Microsoft.EntityFrameworkCore;
+using SensorEventsHub.Domain.Enitidades;
 using SensorEventsHub.Domain.Interfaces.Repositorios;
 using SensorEventsHub.Infrastructure.Context;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,5 +16,6 @@ namespace SensorEventsHub.Infrastructure.Repositorios
         {
 
         }
+     
     }
 }
