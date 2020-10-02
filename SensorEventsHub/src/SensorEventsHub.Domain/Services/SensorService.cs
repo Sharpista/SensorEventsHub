@@ -46,22 +46,22 @@ namespace SensorEventsHub.Domain.Services
         }
         public virtual Task<IEnumerable<Sensor>> BuscarSensoresNordeste()
         {
-            return _sensorRepository.BuscarPorQualquerParametro(x => !string.IsNullOrEmpty(x.Valor) && x.Tag.Contains("nordeste") || x.Tag.Contains("Nordeste") || x.Tag.Contains("NORDESTE"));
+            return _sensorRepository.BuscarPorQualquerParametro(x => !string.IsNullOrEmpty(x.Valor) && x.Tag.Contains("nordeste"));
         }
 
         public Task<IEnumerable<Sensor>> BuscarSensoresSul()
         {
-            return _sensorRepository.BuscarPorQualquerParametro(x => !string.IsNullOrEmpty(x.Valor) && x.Tag.Contains("sul") || x.Tag.Contains("Sul") || x.Tag.Contains("SUL"));
+            return _sensorRepository.BuscarPorQualquerParametro(x => !string.IsNullOrEmpty(x.Valor) && x.Tag.Contains("sul"));
         }
 
         public Task<IEnumerable<Sensor>> BuscarSensoresNorte()
         {
-            return _sensorRepository.BuscarPorQualquerParametro(x => !string.IsNullOrEmpty(x.Valor) && x.Tag.Contains("norte") || x.Tag.Contains("Norte") || x.Tag.Contains("NORTE"));
+            return _sensorRepository.BuscarPorQualquerParametro(x => !string.IsNullOrEmpty(x.Valor) && x.Tag.Contains("norte"));
         }
 
         public Task<IEnumerable<Sensor>> BuscarSensoresSudeste()
         {
-            return _sensorRepository.BuscarPorQualquerParametro( x => !string.IsNullOrEmpty(x.Valor) && x.Tag.Contains("sudeste") || x.Tag.Contains("Sudeste") || x.Tag.Contains("SUDESTE"));
+            return _sensorRepository.BuscarPorQualquerParametro( x => x.Tag.Contains("sudeste"));
         }
 
         public void Dispose()

@@ -58,25 +58,33 @@
     {
 
         eventos = await Http.GetJsonAsync<Evento []>("http://localhost:50620/api/sensores/nordeste");
-        return eventos.Length;
+        var subLista = eventos.Where(x => !string.IsNullOrEmpty(x.Valor)).ToList();
+
+        return subLista.Count();
     }
 
     protected async Task<Double> Sul()
     {
         eventos = await Http.GetJsonAsync<Evento []>("http://localhost:50620/api/sensores/sul");
-        return eventos.Length;
+        var subLista = eventos.Where(x => !string.IsNullOrEmpty(x.Valor)).ToList();
+
+        return subLista.Count();
     }
     protected async Task<Double> Sudeste()
     {
         eventos = await Http.GetJsonAsync<Evento []>("http://localhost:50620/api/sensores/sudeste");
-        return eventos.Length;
+        var subLista = eventos.Where(x => !string.IsNullOrEmpty(x.Valor)).ToList();
+
+        return subLista.Count();
     }
 
     protected async Task<Double> Norte()
     {
 
         eventos = await Http.GetJsonAsync<Evento []>("http://localhost:50620/api/sensores/norte");
-        return eventos.Length;
+        var subLista = eventos.Where(x => !string.IsNullOrEmpty(x.Valor)).ToList();
+
+        return subLista.Count();
     }
 
 }

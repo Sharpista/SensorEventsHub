@@ -12,7 +12,7 @@
 <p><em>Loading...</em></p> }
 else
 {
-<div class="container-fluid">
+<div class="container-xl">
     <table class="table">
         <thead>
             <tr>
@@ -24,46 +24,60 @@ else
         </thead>
         <tbody>
             @foreach(var evento in eventos)
-            {
-            <tr>
-                <td>@evento.Timestamp</td>
-                <td>@evento.Tag</td>
-                <td>@evento.Valor</td>
-                <td>@FoiProcessado(evento.Valor)</td>
-            </tr>        
-            }
+             {
+                <tr>
+                    <td>@evento.Timestamp</td>
+                    <td>@evento.Tag</td>
+                    <td>@evento.Valor</td>
+                    <td>
+                     @if(FoiProcessado(evento.Valor) == "PROCESSADO") 
+                    {
+
+                        <span class="badge badge-success">PROCESSADO</span>
+
+                    }
+                    else 
+                    { 
+
+                         <span class="badge badge-danger">ERRO</span>
+                    }
+                    </td>
+                </tr>
+             }
         </tbody>
     </table>
 </div>
 }
 
-@code { private Evento [] eventos;
+@code { 
+    private Evento [] eventos;
 
-            protected override async Task OnInitializedAsync()
-            {
-                await LoadData();
-            }
-
-            protected async Task LoadData()
-            {
-                eventos = await Http.GetJsonAsync<Evento []>("http://localhost:50620/api/sensores");
-                StateHasChanged();
-            }
-
-            private string FoiProcessado(string valor)
-            {
-                string processado = "";
-
-                if(string.IsNullOrEmpty(valor))
-                {
-                    processado = "";
-                }
-                else
-                {
-                    processado = "Processado";
-                }
-
-                return processado;
-
-            } 
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
     }
+
+    protected async Task LoadData()
+    {
+        eventos = await Http.GetJsonAsync<Evento []>("http://localhost:50620/api/sensores");
+        StateHasChanged();
+    }
+
+    private string FoiProcessado(string valor)
+    {
+        string processado = "";
+
+        if(string.IsNullOrEmpty(valor))
+        {
+            processado = "ERRO";
+        }
+        else
+        {
+            processado = "PROCESSADO";
+        }
+
+        return processado;
+
+    } 
+    
+}

@@ -26,7 +26,6 @@ namespace SensorEventsHub.Infrastructure.Repositorios
             return await DbSet.AsNoTracking().Where(predicado).ToListAsync();
         }
 
-
         public virtual async Task<TEntity> ObterPorId(Guid id)
         {
             return await DbSet.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);

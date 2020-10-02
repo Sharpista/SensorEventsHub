@@ -31,7 +31,7 @@ else
 
 @code {
     private Evento [] eventoSul;
-
+    private List<Evento> subLista = new List<Evento>();
 
     protected override async Task OnInitializedAsync()
     {
@@ -41,18 +41,25 @@ else
     protected async Task LoadData()
     {
         eventoSul = await Http.GetJsonAsync<Evento []>("http://localhost:50620/api/sensores/sul");
-    }
-    private int ValorSul()
-    {
-        var count = 0;
 
         foreach(var item in eventoSul)
         {
             if(!string.IsNullOrEmpty(item.Valor))
             {
+                subLista.Add(item);
+            }
+        }
+    }
+    private int ValorSul()
+    {
+        var count = 0;
+
+        foreach(var item in subLista)
+        {
+            if(!string.IsNullOrEmpty(item.Valor))
+            {
                 count += int.Parse(item.Valor);
             }
-
         }
 
         return count;
