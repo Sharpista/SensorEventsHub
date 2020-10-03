@@ -3,19 +3,23 @@ Nesse projeto criei um Blazor Server Side e uma  API usando .Net Core 3.1 e esto
 Para iniciar a solution, precisam preparar o ambiente do MYSQL, criei um banco que se chama "SensorHub" com apenas uma tabela que se chama "Sensores", nela foi inseridos as colunas "tag", "timestamp" e "valor".O campo chave "id" é gerado automaticamento a cada novo item salvo.
 De inicio eu criei  um projeto Web usando Hangfire para criar meus objetos de forma automatica para simular a chegada de eventos, mas depois de perder o projeto todo por ter feito um revert errado refiz como um Blazor Server Side  meu para aprendizado. Além disso na arquitetura da aplicação foi aplicado o DDD e príncipios do S.O.L.I.D
 
-###Tecnologias abordadas foram :#### 
+<p>Tecnologias abordadas</p> 
 
-AutoMapper,
-Blazor WebAssembly,
-MySQL,
+AutoMapper
+<br/>
+Blazor WebAssembly
+<br/>
+MySQL 
+<br/>
 API REST .NET CORE
+<br/>
 
-###Tetar API###
+<p>Tetar API###</p>
 http://localhost:50620/api/sensores
 
-###Formas de uso :#####
+</p>Formas de uso</p>
 
-Para criar um novo evento o Json tem que estar neste formato por exemplo :
+<p>Para criar um novo evento o Json tem que estar neste formato por exemplo : </p>
 
 {
      
@@ -24,12 +28,14 @@ Para criar um novo evento o Json tem que estar neste formato por exemplo :
     "valor": pode ser nulo
 }
 
-###O que faltou ?#####
+<p>O que faltou ?</p>
 
 Não consegui fazer a tabela em RealTime usando SignalR
+<br/>
 Não consegui rodar a aplicação usando Docker pois esta dando erro de Socket e não consegui resolver, porém o mesmo ja está instalado.
+<br/>
 
 
-
-######Considerações finais:######
-Muito obrigado pela oportunidade de fazer esse desafio foi um grande aprendizado para mim nesse tempo e também peço mil perdões por não ter enviado no dia combinado, pois estou em tempo de entrega de projetos  na faculdade e acabou coincidindo junto com o desafio, desde já o meu muito obrigado pela oportunidade!
+<p>Considerações finais</p>
+Muito obrigado pela oportunidade de fazer esse desafio foi um grande aprendizado para mim nesse tempo e também peço mil perdões por não ter enviado no dia combinado,<br/> 
+pois estou em tempo de entrega de projetos  na faculdade e acabou coincidindo junto com o desafio, desde já o meu muito obrigado pela oportunidade!
