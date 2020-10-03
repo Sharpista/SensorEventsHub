@@ -81,7 +81,7 @@ namespace SensorEventsHub.App.Controller
 
             return Ok(sensor);
         }
-        [HttpDelete("{id:guid}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult<SensorDTO>> Excluir(Guid id)
         {
             var sensor = _mapper.Map<Sensor>(await _sensorService.BuscarPorId(id));

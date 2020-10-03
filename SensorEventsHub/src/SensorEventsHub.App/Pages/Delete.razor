@@ -1,0 +1,54 @@
+﻿@page "/deletarEvento/{id}"
+@using SensorEventsHub.App.Shared
+@inject System.Net.Http.HttpClient Http
+@inject Microsoft.AspNetCore.Components.NavigationManager  Navigation
+
+
+<h2>Deletar</h2>
+
+<div class=" col-md-4">
+    <table class="col-md-4">
+        <tr>
+            <td>Timestamp</td>
+            <td> @evento.Timestamp</td>
+        </tr>
+        <tr>
+            <td>Tag</td>
+            <td> @evento.Tag</td>
+        </tr>
+        <tr>
+            <td>Valor</td>
+            <td> @evento.Valor</td>
+        </tr>
+    </table>
+    <div class="form-group">
+        <input type="button" value="Delete" @onclick="@Deletar" class="btn btn-primary" />
+        <input type="button" value="Cancel" @onclick="@Cancelar" class="btn btn-warning" />
+    </div>
+</div>
+
+@code
+{
+
+    [Parameter]
+    public string Id { get; set; }
+
+    Evento evento = new Evento();
+
+    protected override async Task OnInitializedAsync()
+    {
+        evento = await Http.GetJsonAsync<Evento>("http://localhost:50620/api/sensores/" + Id);
+    }
+
+    protected async Task Deletar()
+    {
+        await Http.DeleteAsync("http://localhost:50620/api/sensores/" + Id);
+        Navigation.NavigateTo("/");
+    }
+
+    void Cancelar()
+    {
+        Navigation.NavigateTo("/");
+    }
+
+}

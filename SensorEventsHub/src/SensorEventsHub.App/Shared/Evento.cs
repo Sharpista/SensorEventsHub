@@ -7,7 +7,7 @@ namespace SensorEventsHub.App.Shared
 {
     public class Evento
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string Timestamp { get; set; }
         public string Tag { get; set; }
         public string Valor { get; set; }

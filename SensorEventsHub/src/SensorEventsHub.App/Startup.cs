@@ -42,8 +42,6 @@ namespace SensorEventsHub.App
             services.AddDbContext<SensorContext>(option => option
             .UseMySql(Configuration.GetConnectionString("SensorEventsHubDB")));
 
-            services.AddHangfire(x =>
-             x.UseSqlServerStorage(Configuration.GetConnectionString("Hangfire")));
 
             services.AddSignalR();
             services.AddResponseCompression(options =>
@@ -81,8 +79,7 @@ namespace SensorEventsHub.App
             app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseHangfireServer();
-            app.UseHangfireDashboard();
+         
             app.UseRouting();
 
            
