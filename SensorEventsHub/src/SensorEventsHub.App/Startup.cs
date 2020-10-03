@@ -35,31 +35,16 @@ namespace SensorEventsHub.App
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.ResolverDependencias();
-            services.AddSingleton<HttpClient>();
+           services.AddSingleton<HttpClient>();
             services.AddAutoMapper(typeof(Startup));
      
 
             services.AddDbContext<SensorContext>(option => option
             .UseMySql(Configuration.GetConnectionString("SensorEventsHubDB")));
-
+            services.AddResponseCompression();
 
             services.AddSignalR();
-            services.AddResponseCompression(options =>
-            {
-                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
-                    new [] {"application/octet-stream"
-                });
-            });
-
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder
-                    .AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    );
-            });
+           
 
         }
 
@@ -75,9 +60,7 @@ namespace SensorEventsHub.App
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
-         
-            app.UseCors("CorsPolicy");
-            app.UseHttpsRedirection();
+            app.UseResponseCompression();
             app.UseStaticFiles();
          
             app.UseRouting();
