@@ -26,9 +26,9 @@ Para criar um novo evento o Json tem que estar neste formato por exemplo :
 
 ###O que faltou ?#####
 
-*Não consegui fazer a tabela em RealTime usando SignalR
+###Não consegui fazer a tabela em RealTime usando SignalR
 
-*Não consegui rodar a aplicação usando Docker pois esta dando erro de Socket e não consegui resolver, porém o mesmo ja está instalado.
+##Não consegui rodar a aplicação usando Docker pois esta dando erro de Socket e não consegui resolver, porém o mesmo ja está instalado.
 
 
 
