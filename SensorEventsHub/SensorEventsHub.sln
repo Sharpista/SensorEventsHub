@@ -9,6 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SensorEventsHub.Infrastruct
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SensorEventsHub.App", "src\SensorEventsHub.App\SensorEventsHub.App.csproj", "{246E4487-B00F-4FFC-9364-D0E908F071A4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9C8177F3-B210-4C8D-BD3A-E23DEA5537E1}"
+	ProjectSection(SolutionItems) = preProject
+		MeuReadme.md = MeuReadme.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
