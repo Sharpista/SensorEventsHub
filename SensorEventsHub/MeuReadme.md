@@ -14,7 +14,7 @@ MySQL
 API REST .NET CORE
 <br/>
 
-<p>Tetar API###</p>
+<p>Testar API</p>
 http://localhost:50620/api/sensores
 <br/>
 
