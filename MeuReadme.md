@@ -1,19 +1,20 @@
 Olá, foi e esta sendo um grande aprendizado esse desafio.
 Nesse projeto criei um Blazor Server Side e uma  API usando .Net Core 3.1 e estou utilizando o MySQL como persistência, pois anteriormente eu estava usando SQL SERVER do próprio Visual Studio, e não estava sendo muito perfomático na hora de debugar e fazer as requisões.
 Para iniciar a solution, precisam preparar o ambiente do MYSQL, criei um banco que se chama "SensorHub" com apenas uma tabela que se chama "Sensores", nela foi inseridos as colunas "tag", "timestamp" e "valor".O campo chave "id" é gerado automaticamente a cada novo item salvo.
-De inicio eu criei  um projeto Web usando Hangfire para criar meus objetos de forma automatica para simular a chegada de eventos, mas depois de perder o projeto todo por ter feito um revert errado refiz como um Blazor Server Side  meu para aprendizado. Além disso na arquitetura da aplicação foi aplicado o DDD e príncipios do S.O.L.I.D
+De inicio eu criei  um projeto Web usando Hangfire para criar meus objetos de forma automatica para simular a chegada de eventos, mas depois de perder o projeto todo por ter feito um revert errado refiz como um Blazor Server Side para meu aprendizado. Além disso na arquitetura da aplicação foi aplicado o DDD e príncipios do S.O.L.I.D
 
 <p>Tecnologias abordadas</p> 
 
 AutoMapper
 <br/>
-Blazor WebAssembly
+Blazor
 <br/>
 MySQL 
 <br/>
 API REST .NET CORE
 <br/>
-
+Chart.JS
+<br/>
 <p>Testar API</p>
 http://localhost:50620/api/sensores
 <br/>
@@ -34,6 +35,7 @@ http://localhost:50620/api/sensores
 Não consegui fazer a tabela em RealTime usando SignalR
 <br/>
 Não consegui rodar a aplicação usando Docker pois esta dando erro de Socket e não consegui resolver, porém o mesmo ja está instalado.
+Porém está rodando localmente via ISS Explorer
 <br/>
 
 
