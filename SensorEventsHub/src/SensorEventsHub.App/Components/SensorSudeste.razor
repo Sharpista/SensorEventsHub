@@ -1,0 +1,65 @@
+﻿@inject HttpClient Http;
+@using SensorEventsHub.App.Shared
+@if(eventosSudeste == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="container-fluid">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Sensor</th>
+                    <th scope="col">Quantidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>brasil.sensor.sudeste</td>
+                    <td>@ValorSudeste()</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+}
+
+@code {
+    private Evento [] eventosSudeste;
+    private List<Evento> subLista = new List<Evento>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    protected async Task LoadData()
+    {
+        eventosSudeste = await Http.GetJsonAsync<Evento []>("http://localhost:50620/api/sensores/sudeste");
+
+        foreach(var item in eventosSudeste)
+        {
+            if(!string.IsNullOrEmpty(item.Valor))
+            {
+                subLista.Add(item);
+            }
+        }
+    }
+
+    private int ValorSudeste()
+    {
+        var count = 0;
+
+        foreach(var item in subLista)
+        {
+            if(!string.IsNullOrEmpty(item.Valor))
+            {
+                count += int.Parse(item.Valor);
+            }
+        }
+
+        return count;
+    }
+}

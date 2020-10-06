@@ -1,0 +1,87 @@
+﻿@page "/"
+@using SensorEventsHub.App.Shared
+@inject HttpClient Http
+@using Microsoft.AspNetCore.SignalR.Client
+
+<h1>Eventos</h1>
+
+<p>Eventos Recebidos</p>
+
+@if(eventos == null)
+{
+<p><em>Loading...</em></p> }
+else
+{
+<div class="container-xl">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Tag</th>
+                <th>Valor</th>
+                <th>Processado</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var evento in eventos)
+             {
+                <tr>
+                    <td>@evento.Timestamp</td>
+                    <td>@evento.Tag</td>
+                    <td>@evento.Valor</td>
+                    <td>
+                     @if(FoiProcessado(evento.Valor) == "PROCESSADO") 
+                    {
+
+                        <span class="badge badge-success">PROCESSADO</span>
+
+                    }
+                    else 
+                    { 
+
+                         <span class="badge badge-danger">ERRO</span>
+                    }
+                    </td>
+                    <td>
+                        <a href="/deletarEvento/@evento.Id" class="btn btn-danger">Deletar</a>
+                    </td>
+                </tr>
+             }
+        </tbody>
+    </table>
+</div>
+}
+
+@code { 
+    private Evento [] eventos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    protected async Task LoadData()
+    {
+        eventos = await Http.GetJsonAsync<Evento []>("http://localhost:50620/api/sensores");
+        StateHasChanged();
+    }
+
+    private string FoiProcessado(string valor)
+    {
+        string processado = "";
+
+        if(string.IsNullOrEmpty(valor))
+        {
+            processado = "ERRO";
+        }
+        else
+        {
+            processado = "PROCESSADO";
+        }
+
+        return processado;
+
+    } 
+    
+}
